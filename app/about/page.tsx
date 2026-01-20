@@ -29,7 +29,7 @@ export default async function About() {
   const entries = await contentfulClient.withoutUnresolvableLinks.getEntries<AuthorSkeleton>({
     content_type: 'author',
   });
-  console.log(entries);
+  // console.log(entries);
 
   entries.items.sort((a, b) => a.fields.name.localeCompare(b.fields.name));
 
