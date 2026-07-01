@@ -23,7 +23,7 @@ const subteams = {
   Strategy: 'bg-purple-800',
 };
 
-type Subteam = 'Building' | 'Electrical' | 'Software' | 'Marketing + Outreach';
+type Subteam = keyof typeof subteams;
 
 export default async function About() {
   const entries = await contentfulClient.withoutUnresolvableLinks.getEntries<AuthorSkeleton>({
@@ -33,21 +33,37 @@ export default async function About() {
 
   entries.items.sort((a, b) => a.fields.name.localeCompare(b.fields.name));
 
-  const execs = [...entries.items]
-    .sort((a, b) => (
-      a.fields.subteams[0]!.fields.name.localeCompare(b.fields.subteams[0]!.fields.name) * 3
-      + a.fields.name.localeCompare(b.fields.name)
-    ))
-    .filter((member) => member.fields.lead && !['Captain', 'Other'].includes(member.fields.subteams[0]!.fields.name));
+ const order = [
+  'President',
+  'Vice President',
+  'Building',
+  'Electrical',
+  'Marketing + Outreach',
+  'Software',
+  'Strategy',
+];
 
-  const captains = entries.items.filter((member) => member.fields.subteams[0]!.fields.name === 'Captain');
+const execs = [...entries.items]
+  .sort((a, b) => {
+    const aOrder = order.indexOf(a.fields.subteams[0]!.fields.name);
+    const bOrder = order.indexOf(b.fields.subteams[0]!.fields.name);
+
+    return aOrder - bOrder || a.fields.name.localeCompare(b.fields.name);
+  })
+  .filter(
+    (member) =>
+      member.fields.lead &&
+      !['Captain', 'Other'].includes(member.fields.subteams[0]!.fields.name)
+  );
+
+  const captains = []
 
   return (
     <>
       <PageTitle imageSrc="/about-image.jpg" title="ABOUT" imageAlt="Placeholder image" />
       <main className="mx-auto max-w-5xl px-5">
         <h2 className={classNames(styles.headingShadow, 'text-5xl font-bold mt-1')}>Members:</h2>
-        <p className="text-lg font-bold mt-4">Below are the 2023-24 team members, including the subteams they are a part of.</p>
+        <p className="text-lg font-bold mt-4">Below are the 2026-27 team members, including the subteams they are a part of.</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 mt-8">
           <div>
             <h3 className={classNames('text-4xl font-bold mb-5', styles.smallHeadingShadow)}>Execs</h3>
@@ -72,7 +88,7 @@ export default async function About() {
           </div>
           <div>
             <h3 className={classNames('text-4xl font-bold', styles.smallHeadingShadow)}>Members</h3>
-            {Object.keys(subteams).filter((subteam) => subteam !== 'Captain').map((subteam) => (
+            {Object.keys(subteams).filter((subteam) => subteam !== 'President' && subteam !== 'Vice President').map((subteam) => (
               <div key={subteam} className="mb-5">
                 <h3 className="text-2xl font-bold italic underline mt-4">{subteam.toUpperCase()}</h3>
                 {entries.items
