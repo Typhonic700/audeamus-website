@@ -11,7 +11,7 @@ export const revalidate = 120;
 
 export const metadata: Metadata = {
   title: 'MGCI Robotics',
-  description: 'We are MGCI Robotics, Marc Garneau Collegiate Institute\'s robotics club. We are also known as Audeamus 8574.',
+  description: 'We are MGCI Robotics, Marc Garneau Collegiate Institute\'s robotics club. We are also known as Audeamus 8998A/B.',
 };
 
 export default async function Home() {
@@ -47,7 +47,7 @@ export default async function Home() {
                 AUDEAMUS
               </h2>
               <h2 className={classNames('text-3xl font-bold', styles.redOutline)}>
-                FRC 8574
+                Vex V5 8998A & 8998B
               </h2>
             </div>
           </div>
@@ -133,6 +133,9 @@ export default async function Home() {
                 Our FRC team, Audeamus 8574, was founded in 2021. In our rookie
                 year, we won the district Rookie All-Star award and qualified for
                 the FIRST World Championship.
+              </p>
+              <p className="text-2xl mb-6">
+                The 2025-2026 school year was our first official Vex season, where we competed in three competitions, and our newest team, 8998B, placed 5th at TDSB Skills.
               </p>
             </div>
             <div className="col-span-3 mx-auto h-60 w-60 sm:mr-0 sm:ml-6 sm:w-auto sm:h-auto sm:col-span-1 flex items-center">
