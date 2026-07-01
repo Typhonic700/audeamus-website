@@ -14,16 +14,16 @@ export const metadata: Metadata = {
 };
 
 const subteams = {
-  Captain: 'bg-red-800',
+  President: 'bg-red-800',
+  'Vice President': 'bg-orange-800',
   Building: 'bg-green-800',
   Electrical: 'bg-yellow-800',
-  Marketing + Outreach: 'bg-pink-800',
-  Outreach: 'bg-teal-800',
+  'Marketing + Outreach': 'bg-pink-800',
   Software: 'bg-blue-800',
   Strategy: 'bg-purple-800',
 };
 
-type Subteam = 'Building' | 'Electrical' | 'Software' | 'Marketing';
+type Subteam = 'Building' | 'Electrical' | 'Software' | 'Marketing + Outreach';
 
 export default async function About() {
   const entries = await contentfulClient.withoutUnresolvableLinks.getEntries<AuthorSkeleton>({
