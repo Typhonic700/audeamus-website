@@ -20,11 +20,11 @@ export default function StemNight() {
           </div>
           <div className="flex flex-col items-center">
             <CalendarIcon title="Date" className="w-10 h-10" />
-            <p className="text-xl mb-5">April 9, 2025</p>
+            <p className="text-xl mb-5">TBD</p>
           </div>
           <div className="flex flex-col items-center">
             <ClockIcon title="Time" className="w-10 h-10" />
-            <p className="text-xl mb-5">5:00 PM - 8:00 PM</p>
+            <p className="text-xl mb-5">TBD</p>
           </div>
         </div>
         {/* <h2 className="font-bold text-4xl my-6">Registration has now closed.
