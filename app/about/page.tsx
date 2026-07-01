@@ -17,7 +17,7 @@ const subteams = {
   Captain: 'bg-red-800',
   Building: 'bg-green-800',
   Electrical: 'bg-yellow-800',
-  Marketing: 'bg-pink-800',
+  Marketing + Outreach: 'bg-pink-800',
   Outreach: 'bg-teal-800',
   Software: 'bg-blue-800',
   Strategy: 'bg-purple-800',
