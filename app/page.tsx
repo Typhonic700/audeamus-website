@@ -135,8 +135,8 @@ export default async function Home() {
                 the FIRST World Championship.
               </p>
               <p className="text-2xl mb-6">
-                The 2025-2026 school year was our first official Vex season, 
-                where we competed in three competitions, and our newest team, 8998B, 
+                The 2025-2026 school year was our first official Vex season,
+                where we competed in three competitions, and our newest team, 8998B,
                 placed 5th at TDSB Skills.
               </p>
             </div>
