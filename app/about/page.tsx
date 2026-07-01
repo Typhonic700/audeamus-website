@@ -29,77 +29,113 @@ export default async function About() {
   const entries = await contentfulClient.withoutUnresolvableLinks.getEntries<AuthorSkeleton>({
     content_type: 'author',
   });
-  // console.log(entries);
 
   entries.items.sort((a, b) => a.fields.name.localeCompare(b.fields.name));
 
- const order = [
-  'President',
-  'Vice President',
-  'Building',
-  'Electrical',
-  'Marketing + Outreach',
-  'Software',
-  'Strategy',
-];
+  const order = [
+    'President',
+    'Vice President',
+    'Building',
+    'Electrical',
+    'Marketing + Outreach',
+    'Software',
+    'Strategy',
+  ];
 
-const execs = [...entries.items]
-  .sort((a, b) => {
-    const aOrder = order.indexOf(a.fields.subteams[0]!.fields.name);
-    const bOrder = order.indexOf(b.fields.subteams[0]!.fields.name);
+  const execs = [...entries.items]
+    .sort((a, b) => {
+      const aOrder = order.indexOf(a.fields.subteams[0]!.fields.name);
+      const bOrder = order.indexOf(b.fields.subteams[0]!.fields.name);
 
-    return aOrder - bOrder || a.fields.name.localeCompare(b.fields.name);
-  })
-  .filter(
-    (member) =>
-      member.fields.lead &&
-      !['Captain', 'Other'].includes(member.fields.subteams[0]!.fields.name)
-  );
+      return aOrder - bOrder || a.fields.name.localeCompare(b.fields.name);
+    })
+    .filter(
+      (member) => member.fields.lead
+        && !['Captain', 'Other'].includes(member.fields.subteams[0]!.fields.name),
+    );
 
-  const captains = []
+  const captains = [];
 
   return (
     <>
       <PageTitle imageSrc="/about-image.jpg" title="ABOUT" imageAlt="Placeholder image" />
       <main className="mx-auto max-w-5xl px-5">
-        <h2 className={classNames(styles.headingShadow, 'text-5xl font-bold mt-1')}>Members:</h2>
-        <p className="text-lg font-bold mt-4">Below are the 2026-27 team members, including the subteams they are a part of.</p>
+        <h2 className={classNames(styles.headingShadow, 'text-5xl font-bold mt-1')}>
+          Members:
+        </h2>
+
+        <p className="text-lg font-bold mt-4">
+          Below are the 2026-27 team members, including the subteams they are a part of.
+        </p>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 mt-8">
           <div>
-            <h3 className={classNames('text-4xl font-bold mb-5', styles.smallHeadingShadow)}>Execs</h3>
+            <h3 className={classNames('text-4xl font-bold mb-5', styles.smallHeadingShadow)}>
+              Execs
+            </h3>
+
             {[...captains, ...execs].map((member, i) => (
-              <div key={i} className={classNames(subteams[member.fields.subteams[0]!.fields.name as Subteam], 'p-2 rounded-3xl flex mb-5 max-w-sm')}>
+              <div
+                key={i}
+                className={classNames(
+                  subteams[member.fields.subteams[0]!.fields.name as Subteam],
+                  'p-2 rounded-3xl flex mb-5 max-w-sm',
+                )}
+              >
                 {member.fields.profilePicture?.fields.file?.url
-                  ? <Image
-                      src={`https:${member.fields.profilePicture!.fields.file!.url}`}
+                  ? (
+                    <Image
+                      src={`https:${member.fields.profilePicture.fields.file.url}`}
                       alt="Profile picture"
                       width={64}
                       height={64}
                       className="rounded-full border-white border-2"
                     />
-                  : <UserCircleIcon className="w-16 h-16 rounded-full fill-white p-0" />
-                }
+                    )
+                  : (
+                    <UserCircleIcon className="w-16 h-16 rounded-full fill-white p-0" />
+                    )}
+
                 <div className="pl-3 py-1">
                   <h4 className="text-xl font-bold">{member.fields.name}</h4>
-                  <p className="italic text-gray-300 font-bold">{member.fields.subteams[0]!.fields.name}</p>
+                  <p className="italic text-gray-300 font-bold">
+                    {member.fields.subteams[0]!.fields.name}
+                  </p>
                 </div>
               </div>
             ))}
           </div>
+
           <div>
-            <h3 className={classNames('text-4xl font-bold', styles.smallHeadingShadow)}>Members</h3>
-            {Object.keys(subteams).filter((subteam) => subteam !== 'President' && subteam !== 'Vice President').map((subteam) => (
-              <div key={subteam} className="mb-5">
-                <h3 className="text-2xl font-bold italic underline mt-4">{subteam.toUpperCase()}</h3>
-                {entries.items
-                  .filter((member) => !member.fields.lead
-                                   && member.fields.subteams
-                                     .map((item) => item?.fields.name).includes(subteam))
-                  .map((member, i) => (
-                    <div className="inline-block w-1/2 text-xl" key={i}>{member.fields.name}</div>
-                  ))}
-              </div>
-            ))}
+            <h3 className={classNames('text-4xl font-bold', styles.smallHeadingShadow)}>
+              Members
+            </h3>
+
+            {Object.keys(subteams)
+              .filter(
+                (subteam) => subteam !== 'President'
+                  && subteam !== 'Vice President',
+              )
+              .map((subteam) => (
+                <div key={subteam} className="mb-5">
+                  <h3 className="text-2xl font-bold italic underline mt-4">
+                    {subteam.toUpperCase()}
+                  </h3>
+
+                  {entries.items
+                    .filter(
+                      (member) => !member.fields.lead
+                        && member.fields.subteams
+                          .map((item) => item?.fields.name)
+                          .includes(subteam),
+                    )
+                    .map((member, i) => (
+                      <div className="inline-block w-1/2 text-xl" key={i}>
+                        {member.fields.name}
+                      </div>
+                    ))}
+                </div>
+              ))}
           </div>
         </div>
       </main>
