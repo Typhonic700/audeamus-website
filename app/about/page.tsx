@@ -82,7 +82,7 @@ export default async function About() {
                   'p-2 rounded-3xl flex mb-5 max-w-sm',
                 )}
               >
-                               {member.fields.profilePicture?.fields.file?.url ? (
+                {member.fields.profilePicture?.fields.file?.url ? (
                   <Image
                     src={`https:${member.fields.profilePicture.fields.file.url}`}
                     alt="Profile picture"
@@ -91,7 +91,9 @@ export default async function About() {
                     className="rounded-full border-white border-2"
                   />
                 ) : (
-                  <UserCircleIcon className="w-16 h-16 rounded-full fill-white p-0" />
+                  <UserCircleIcon
+                    className="w-16 h-16 rounded-full fill-white p-0"
+                  />
                 )}
 
                 <div className="pl-3 py-1">
