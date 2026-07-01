@@ -82,19 +82,17 @@ export default async function About() {
                   'p-2 rounded-3xl flex mb-5 max-w-sm',
                 )}
               >
-                {member.fields.profilePicture?.fields.file?.url
-                  ? (
-                    <Image
-                      src={`https:${member.fields.profilePicture.fields.file.url}`}
-                      alt="Profile picture"
-                      width={64}
-                      height={64}
-                      className="rounded-full border-white border-2"
-                    />
-                    )
-                  : (
-                    <UserCircleIcon className="w-16 h-16 rounded-full fill-white p-0" />
-                    )}
+                               {member.fields.profilePicture?.fields.file?.url ? (
+                  <Image
+                    src={`https:${member.fields.profilePicture.fields.file.url}`}
+                    alt="Profile picture"
+                    width={64}
+                    height={64}
+                    className="rounded-full border-white border-2"
+                  />
+                ) : (
+                  <UserCircleIcon className="w-16 h-16 rounded-full fill-white p-0" />
+                )}
 
                 <div className="pl-3 py-1">
                   <h4 className="text-xl font-bold">{member.fields.name}</h4>
