@@ -54,8 +54,6 @@ export default async function About() {
         && !['Captain', 'Other'].includes(member.fields.subteams[0]!.fields.name),
     );
 
-  const captains = [];
-
   return (
     <>
       <PageTitle imageSrc="/about-image.jpg" title="ABOUT" imageAlt="Placeholder image" />
@@ -74,7 +72,7 @@ export default async function About() {
               Execs
             </h3>
 
-            {[...captains, ...execs].map((member, i) => (
+            {execs.map((member, i) => (
               <div
                 key={i}
                 className={classNames(
