@@ -92,7 +92,7 @@ export default async function Home() {
                 We also post information on our{' '}
                 <Link
                   className="text-red-500 underline hover:text-red-400"
-                  href="https://discord.gg/ZsFRezU74a"
+                  href="https://www.instagram.com/mgci.robotics/"
                 >
                   Instagram
                 </Link>
