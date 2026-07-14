@@ -20,6 +20,7 @@ const subteams = {
   'Marketing + Outreach': 'bg-pink-800',
   Software: 'bg-blue-800',
   Strategy: 'bg-purple-800',
+  Notebooking: 'bg-yellow-700',
 };
 
 type Subteam = keyof typeof subteams;
@@ -38,6 +39,7 @@ export default async function About() {
     'Marketing + Outreach',
     'Software',
     'Strategy',
+    'Notebooking',
   ];
 
   const execs = [...entries.items]
