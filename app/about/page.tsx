@@ -15,12 +15,12 @@ export const metadata: Metadata = {
 
 const subteams = {
   President: 'bg-red-800',
-  'Vice President': 'bg-orange-800',
+  'Vice President': 'bg-purple-800',
   Building: 'bg-green-800',
   'Marketing + Outreach': 'bg-pink-800',
   Software: 'bg-blue-800',
-  Strategy: 'bg-purple-800',
-  Notebooking: 'bg-yellow-700',
+  Strategy: 'bg-yellow-700',
+  Notebooking: 'bg-teal-800',
 };
 
 type Subteam = keyof typeof subteams;
